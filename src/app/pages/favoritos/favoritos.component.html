@@ -1,0 +1,41 @@
+<div class='col mt-5'>
+    <input #pokemon type=text (keyup.enter)="buscarPokemons(pokemon.value)" class="form-control" placeholder="Buscar Favorito">
+</div>
+<table class="table text-white table-dark" *ngIf="load">
+    <thead>
+      <tr>
+        <th scope="col">Sprite</th>
+        <th scope="col">Name</th>
+        <th scope="col">Erase</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let poke of pokes; index as i">
+      <tr>
+        <th scope="row"><img [src]="pokemons[i].sprites.front_default" class="img-thumbnail" ></th>
+        <td><h2>{{poke}}</h2></td>
+        <td><button class="btn btn-danger" 
+            (click)="erase(i)">
+            <i class="far fa-heart"></i>
+    </button></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table text-white table-dark" *ngIf="!load">
+    <thead>
+      <tr>
+        <th scope="col">Sprite</th>
+        <th scope="col">Name</th>
+        <th scope="col">Erase</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><img [src]="pokemons[0].sprites.front_default" class="img-thumbnail" ></th>
+        <td><h2>{{names}}</h2></td>
+        <td><button class="btn btn-danger" 
+            (click)="erase(pokes)">
+            <i class="far fa-heart"></i>
+    </button></td>
+      </tr>
+    </tbody>
+  </table>

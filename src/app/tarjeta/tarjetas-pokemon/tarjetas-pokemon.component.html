@@ -1,0 +1,59 @@
+<div class='col mt-5'>
+  <input #pokem type=text (keyup.enter)="getNextPoke(pokem.value)" class="form-control" placeholder="Buscar pokemon">
+</div>
+<div style="margin-left: 300px;">
+<div class="row row-cols row-cols-md-2 g-4 m-1 " >
+  <div class="col mb-4" *ngFor="let pokes of pokes" >
+    <div class="card h-100" >
+      <img [src]="pokes.sprites.front_default" class="card-img-top" >
+      <div class="card-body card text-white"style="background-color: black;" >
+        <hr>
+        <h5 class="card-title text">{{pokes.name}}</h5>
+        <hr>
+        <div class="row">
+          <div class="col">
+        <button class="btn btn-primary" 
+                (click)="getStats(pokes.name)">
+          Stats
+        </button>
+      </div>
+        <div class="col">
+        <button class="btn btn-danger" 
+                (click)="guardarPokemones(pokes.name)">
+                <i class="far fa-heart"></i>
+        </button>
+      </div>
+      </div>
+        
+          <div *ngIf="load" class="row mt-3">
+         
+            <div class="col"><button class="btn btn-primary" 
+              (click)="getHp()">HP
+          </button> <div *ngIf="load0" >{{stats.hp}}</div></div>
+          
+          <div class="col"><button class="btn btn-primary" 
+            (click)="getAtk()">Atk
+        </button> <div *ngIf="load1">{{stats.attack}}</div></div>
+
+        <div class="col"><button class="btn btn-primary" 
+          (click)="getDef()">Def.
+      </button> <div *ngIf="load2">{{stats.defense}}</div></div>
+
+      <div class="col"><button class="btn btn-primary" 
+        (click)="getSatk()">S.Atk
+    </button> <div *ngIf="load3">{{stats.attack}}</div></div>
+
+    <div class="col"><button class="btn btn-primary" 
+      (click)="getSdef()">S.Def
+  </button> <div *ngIf="load4">{{stats.defense}}</div></div>
+
+  <div class="col"><button class="btn btn-primary" 
+    (click)="getSpeed()">Speed
+</button> <div *ngIf="load5">{{stats.speed}}</div></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
