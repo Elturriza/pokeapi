@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from "@angular/common/http";
 import { TarjetasPokemonComponent } from './tarjeta/tarjetas-pokemon/tarjetas-pokemon.component';
+import { PokemonComponent } from './buscar/pokemon/pokemon.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TarjetasPokemonComponent } from './tarjeta/tarjetas-pokemon/tarjetas-po
     FavoritosComponent,
     NavbarComponent,
     NotFoundComponent,
-    TarjetasPokemonComponent
+    TarjetasPokemonComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,

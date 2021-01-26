@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokemonServiceService } from 'src/app/servicios/pokemon-service.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class FavoritosComponent implements OnInit {
   load=true;
   names=[];
 
-  constructor(private pokemon:PokemonServiceService) { 
+  constructor(private pokemon:PokemonServiceService,
+              private router:Router) { 
     this.cargarStorage();
     this.getPokemons();
   }
@@ -32,35 +34,22 @@ export class FavoritosComponent implements OnInit {
       name=this.pokes[i];
       this.pokemon.getPokemonsNames(name.toString()).toPromise().then(data=>{
           this.pokemons.push(data);
-          console.log(this.names)
-          console.log(this.pokemons);
         })
     }
   }
   buscarPokemons(name:string){
-    this.load=false;
-    if(name===""){
-      this.cargarStorage();
-      return;
-    }
-    for(let i=0; i<this.pokes.length; i++){
-      if(name===this.pokes[i]){
-        this.names=this.pokes[i];
-        this.pokemon.getPokemonsNames(name.toString()).toPromise().then(data=>{
-          this.pokemons=[];
-          this.pokemons.push(data);
-          console.log(this.names)
-          console.log(this.pokemons);
-        })
-      }
-    }
+    this.router.navigate(['/pokemon',name]);
     
   }
 
   erase(i:number){
     this.pokes.splice(i,1);
     localStorage.setItem("name",JSON.stringify(this.pokes));
+    window.location.reload();
+    this.pokemons[i].pop();
+    
   }
+
 
   ngOnInit(): void {
   }
